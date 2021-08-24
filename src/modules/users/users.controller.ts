@@ -6,10 +6,9 @@ import {
   Patch,
   Param,
   Delete,
-  Res,
   Req,
 } from '@nestjs/common';
-import { Response, Request } from 'express';
+import {  Request } from 'express';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
