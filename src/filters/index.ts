@@ -10,9 +10,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
         const request = ctx.getRequest<Request>();
         const status = exception.getStatus();
         const error = exception.getResponse(); 
-        let defaultError = "Something went wrong";
         // @ts-ignore
-        defaultError = typeof error === "object" && error?.message ? error.message : error
+        const defaultError = typeof error === "object" && error?.message ? error.message : error
         response.status(status).json({
             statusCode: status,
             statusMessage: defaultError,
