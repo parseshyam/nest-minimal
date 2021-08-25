@@ -1,13 +1,15 @@
+declare const module: any;
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './filters';
+import * as morgan from 'morgan';
 
-declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.use(morgan("dev")); // * for http logging
+  app.useGlobalFilters(new HttpExceptionFilter()); // * for global exception handling
 
   await app.listen(3000);
 
