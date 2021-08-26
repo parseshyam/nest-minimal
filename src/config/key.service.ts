@@ -1,4 +1,3 @@
-/// <reference path="key.d.ts" />
 import { Injectable, Scope } from '@nestjs/common';
 import { config } from 'dotenv';
 import * as fs from "fs";
