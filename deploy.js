@@ -4,7 +4,7 @@ const CURR_ENV = s.env.NODE_ENV;
 
 if (!CURR_ENV) {
     console.log("PLEASE SET YOU NODE ENV");
-    process.exit(0);
+    process.exit(1);
 }
 
 console.clear();
@@ -14,7 +14,7 @@ s.echo("1. CHECKING ENVIROMENT FILE...");
 const isEnvExists = fs.existsSync(`.${process.env.NODE_ENV}.env`);
 if (!isEnvExists) {
     console.log(`ENV MISSING PLEASE ADD ENV FILE -> .${process.env.NODE_ENV}.env`);
-    process.exit(0);
+    process.exit(1);
 }
 s.rm('-rf', 'build');
 

@@ -22,7 +22,7 @@ export class KeysService {
     private checkEnv = () => {
         if (!process.env.NODE_ENV) {
             console.warn('No enviroment specified! please run below command:- ');
-            console.log('npx cross-env NODE_ENV=[ development | staging | production ] node server.js');
+            console.log('npx cross-env NODE_ENV=[ development | staging | production ] node build/main.js');
             console.log('For now falling back to default "development" enviroment and using it.');
             process.env['NODE_ENV'] = "development";
         } else if (!this.defaultEnv.includes(process.env.NODE_ENV)) {
