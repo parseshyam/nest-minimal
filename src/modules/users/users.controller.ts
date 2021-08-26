@@ -1,3 +1,4 @@
+import { KeysService } from '../../config/key.service';
 import {
   Controller,
   Get,
@@ -8,14 +9,21 @@ import {
   Delete,
   Req,
 } from '@nestjs/common';
-import {  Request } from 'express';
+import { Request } from 'express';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  
+  private readonly usersService: UsersService;
+  private readonly keysService: KeysService;
+
+  constructor(usersService: UsersService, keysService: KeysService) {
+    this.keysService = keysService;
+    this.usersService = usersService;
+  }
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
@@ -24,9 +32,9 @@ export class UsersController {
 
   @Get()
   findAll(@Req() req: Request) {
+    console.log(this.keysService.KEYS.TOKEN);
     const data = this.usersService.findAll();
     return { data };
-    // return res.status(200).json({ data });
   }
 
   @Get(':id')

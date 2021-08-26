@@ -1,3 +1,4 @@
+import { KeysService } from './../../config/key.service';
 import {
   Controller,
   Get,
@@ -13,7 +14,7 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @Controller('profiles')
 export class ProfilesController {
-  constructor(private readonly profilesService: ProfilesService) {}
+  constructor(private readonly profilesService: ProfilesService, private readonly keysService: KeysService) { }
 
   @Post()
   create(@Body() createProfileDto: CreateProfileDto) {
