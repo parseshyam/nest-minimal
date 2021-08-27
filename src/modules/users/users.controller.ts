@@ -10,15 +10,18 @@ import {
   Delete,
   Req,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { Request } from 'express';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Roles } from 'src/decorators/roles.decorator';
+import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
 
 @Controller('users')
 @UseGuards(RolesGuard)
+@UseInterceptors(LoggingInterceptor)
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
