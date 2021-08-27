@@ -24,8 +24,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const status = exception.getStatus();
     const error = exception.getResponse();
     i18n.setLocale(i18n.getLocale(request));
-    // @ts-ignore
     const errorCode =
+      // @ts-ignore
       typeof error === 'object' && error?.message ? error.message : error;
     response.status(status).json({
       statusCode: status,
