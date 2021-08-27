@@ -21,6 +21,7 @@ import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
 
 @Controller('users')
 @UseGuards(RolesGuard)
+@Roles('admin')
 @UseInterceptors(LoggingInterceptor)
 export class UsersController {
   constructor(
@@ -29,7 +30,7 @@ export class UsersController {
   ) {}
 
   @Get()
-  @Roles('admin')
+  @Roles('user')
   findAll(@Req() req: Request) {
     console.log(this.keysService.KEYS.TOKEN);
     const data = this.usersService.findAll();
