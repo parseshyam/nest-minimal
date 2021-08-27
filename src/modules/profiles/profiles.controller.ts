@@ -14,7 +14,10 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @Controller('profiles')
 export class ProfilesController {
-  constructor(private readonly profilesService: ProfilesService, private readonly keysService: KeysService) { }
+  constructor(
+    private readonly profilesService: ProfilesService,
+    private readonly keysService: KeysService,
+  ) {}
 
   @Post()
   create(@Body() createProfileDto: CreateProfileDto) {

@@ -20,12 +20,10 @@ import { Roles } from 'src/decorators/roles.decorator';
 @Controller('users')
 @UseGuards(RolesGuard)
 export class UsersController {
-
-
   constructor(
     private readonly usersService: UsersService,
-    private readonly keysService: KeysService
-  ) { }
+    private readonly keysService: KeysService,
+  ) {}
 
   @Get()
   @Roles('admin')
@@ -35,11 +33,11 @@ export class UsersController {
     return { data };
   }
 
-  @Post() 
+  @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
-  
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);

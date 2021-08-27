@@ -9,7 +9,7 @@ export class UsersService {
   }
 
   findAll() {
-    throw new HttpException("Forbiden", HttpStatus.FORBIDDEN);
+    throw new HttpException('Forbiden', HttpStatus.FORBIDDEN);
     return `This action returns all users`;
   }
 
