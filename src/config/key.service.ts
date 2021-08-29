@@ -8,7 +8,7 @@ export class KeysService {
 
   public readonly KEYS = <IConfigKeys>{};
 
-  // TODO Check and validate the env file and it's respective keys before proceeding further.
+  // TODO Check and validate the env file and it's respective keys before proceeding any further.
   constructor() {
     console.log('CHECK CONFIG KEYS CONTROLLER CALLED');
     // * Will check the env file.
@@ -117,4 +117,8 @@ export class KeysService {
     this.KEYS.FCM = FCM;
     this.KEYS.AWS = AWS;
   };
+
+  get(key: string): IConfigKeys {
+    return this.KEYS[key];
+  }
 }

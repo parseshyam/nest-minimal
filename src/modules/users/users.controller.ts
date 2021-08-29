@@ -27,14 +27,14 @@ export class UsersController {
   constructor(
     private readonly usersService: UsersService,
     private readonly keysService: KeysService,
-  ) {}
+  ) { }
 
   @Get()
   @Roles('user')
-  findAll(@Req() req: Request) {
+  async findAll(@Req() req: Request) {
     console.log(this.keysService.KEYS.TOKEN);
-    const data = this.usersService.findAll();
-    return { data };
+    const [rows, count] = await this.usersService.findAll();
+    return { rows, count };
   }
 
   @Post()
