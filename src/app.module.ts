@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { AllModules } from './modules';
 import { KeysConfigModule } from './config/key.module';
 import { ScheduleModule } from '@nestjs/schedule';
-import { CronService } from "./loaders/cron/cron.service";
+import { CronService } from "./services/cron/cron.service";
 
 @Module({
   imports: [KeysConfigModule, ScheduleModule.forRoot(), ...AllModules],
