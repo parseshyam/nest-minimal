@@ -9,19 +9,19 @@ export class UsersService {
   constructor(
     @Inject('USER_REPOSITORY')
     private userRepository: Repository<User>,
-  ) { }
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
     try {
       const userCreated = await this.userRepository.insert({
         lastName: 'shyam',
         firstName: 'parse',
-        age: 23
+        age: 23,
       });
 
-      console.log("User Created", userCreated)
+      console.log('User Created', userCreated);
     } catch (error) {
-      throw (error)
+      throw error;
     }
     return 'This action adds a new user';
   }
@@ -31,7 +31,7 @@ export class UsersService {
       where: {},
       withDeleted: false,
       skip: 0,
-      take: 100
+      take: 100,
     });
     // throw new HttpException('Forbiden', HttpStatus.FORBIDDEN);
     return findAll;

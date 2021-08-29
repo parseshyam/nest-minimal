@@ -8,11 +8,13 @@ import { DatabaseModule } from '../../database/database.module';
 @Module({
   imports: [DatabaseModule],
   controllers: [UsersController],
-  providers: [{
-    provide: 'USER_REPOSITORY',
-    useFactory: (connection: Connection) => connection.getRepository(User),
-    inject: ['DATABASE_CONNECTION'],
-  },
-    UsersService],
+  providers: [
+    {
+      provide: 'USER_REPOSITORY',
+      useFactory: (connection: Connection) => connection.getRepository(User),
+      inject: ['DATABASE_CONNECTION'],
+    },
+    UsersService,
+  ],
 })
-export class UsersModule { }
+export class UsersModule {}

@@ -13,7 +13,7 @@ export class LoggingInterceptor implements NestInterceptor {
     console.log('Before...');
     const methodKey = ctx.getHandler().name; // "create"
     const className = ctx.getClass().name; // "CatsController"
-    console.log(methodKey, className)
+    console.log(methodKey, className);
     const now = Date.now();
     return next
       .handle()
