@@ -1,15 +1,15 @@
 import { User } from '../../database/entities/user.entity';
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bullmq';
-
+import { QUEUES } from '../../common';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectQueue('notification') private notificationQueue: Queue,
+    @InjectQueue(QUEUES.NOTIFICATION_QUEUE) private notificationQueue: Queue,
     @Inject('USER_REPOSITORY')
     private userRepository: Repository<User>,
   ) {}

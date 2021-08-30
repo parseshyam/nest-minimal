@@ -2,7 +2,9 @@ import { Process, Processor } from '@nestjs/bull';
 import { Scope } from '@nestjs/common';
 import { Job } from 'bull';
 import { NotificationService } from './notification.service';
-@Processor({ name: 'notification', scope: Scope.DEFAULT })
+import { QUEUES } from '../../common';
+
+@Processor({ name: QUEUES.NOTIFICATION_QUEUE, scope: Scope.DEFAULT })
 export class NotificationProcessor {
   constructor(private readonly pushService: NotificationService) {}
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import firebase from 'firebase-admin';
-import { KeysService } from '../../../config/key.service';
+import { KeysService } from '../../config/key.service';
 
 @Injectable()
 export class NotificationService {

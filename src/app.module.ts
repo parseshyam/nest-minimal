@@ -6,8 +6,8 @@ import { KeysConfigModule } from './config/key.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { CronService } from './services/cron/cron.service';
 import { BullModule } from '@nestjs/bull';
-import { NotificationProcessor } from './services/queue/processors/notification.processor';
-import { NotificationService } from './services/queue/processors/notification.service';
+import { NotificationProcessor } from './services/queue/notification.processor';
+import { NotificationService } from './services/queue/notification.service';
 @Module({
   imports: [
     KeysConfigModule,
