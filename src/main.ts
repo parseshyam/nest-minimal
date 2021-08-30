@@ -25,7 +25,7 @@ const bootstrap = async () => {
       },
     ],
   });
-  app.use('/' + 'arena', arena);
+  app.use('/arena', arena);
   await app.listen(3000);
   if (module.hot) {
     module.hot.accept();
@@ -37,11 +37,8 @@ const bootstrap = async () => {
 const graceShut = (app: NestExpressApplication) => {
   ['SIGINT', 'SIGTERM'].forEach((signal) => {
     process.on(signal, () => {
-      console.log('SIGNAL CAPTURED :', signal);
-      app
-        .close()
-        .then(() => process.exit(0))
-        .catch(console.log);
+      console.log('SIGNAL CAPTURED : ', signal);
+      app.close().finally(() => process.exit(0))
     });
   });
 };
