@@ -9,7 +9,6 @@ export const databaseProviders = [
       try {
         const config = configService.KEYS.DB;
         const isEnvDev = process.env.NODE_ENV === 'development';
-        console.log(configService.KEYS.DB);
         const connection = await createConnection({
           name: 'demo-db',
           type: 'postgres',

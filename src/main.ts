@@ -3,15 +3,31 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './filters';
-import * as morgan from 'morgan';
+import morgan from 'morgan';
+import { Queue } from "bullmq";
+import Arena from 'bull-arena';
 
 const bootstrap = async () => {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.use(morgan('dev')); // * for http logging
   app.useGlobalFilters(new HttpExceptionFilter()); // * for global exception handling
+  const arena = Arena({
+    BullMQ: Queue,
+    queues: [
+      {
+        name: 'notification',
+        hostId: 'Notification Queue',
+        type: "bullmq",
+        redis: {
+          host: 'localhost',
+          port: 6379,
+        }
+      },
+    ]
+  });
+  app.use('/' + 'arena', arena);
   await app.listen(3000);
   if (module.hot) {
-    console.log('Hot module reloaded');
     module.hot.accept();
     module.hot.dispose(() => app.close());
   }

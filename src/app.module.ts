@@ -5,10 +5,21 @@ import { AllModules } from './modules';
 import { KeysConfigModule } from './config/key.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { CronService } from "./services/cron/cron.service";
-
+import { BullModule } from '@nestjs/bull';
+import { NotificationProcessor } from "./services/queue/processors/notification.processor";
 @Module({
-  imports: [KeysConfigModule, ScheduleModule.forRoot(), ...AllModules],
+  imports: [
+    KeysConfigModule,
+    ScheduleModule.forRoot(),
+    BullModule.forRoot({
+      redis: {
+        host: 'localhost',
+        port: 6379,
+      },
+    }),
+    ...AllModules
+  ],
   controllers: [AppController],
-  providers: [AppService, CronService],
+  providers: [AppService, CronService, NotificationProcessor],
 })
 export class AppModule { }

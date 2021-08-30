@@ -4,9 +4,14 @@ import { UsersController } from './users.controller';
 import { Connection } from 'typeorm';
 import { User } from '../../database/entities/user.entity';
 import { DatabaseModule } from '../../database/database.module';
-
+import { BullModule } from '@nestjs/bull';
 @Module({
-  imports: [DatabaseModule],
+  imports: [
+    DatabaseModule,
+    BullModule.registerQueue({
+      name: 'notification',
+    }),
+  ],
   controllers: [UsersController],
   providers: [
     {
@@ -17,4 +22,4 @@ import { DatabaseModule } from '../../database/database.module';
     UsersService,
   ],
 })
-export class UsersModule {}
+export class UsersModule { }

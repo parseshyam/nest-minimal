@@ -32,9 +32,7 @@ export class UsersController {
   @Get()
   @Roles('user')
   async findAll(@Req() req: Request) {
-    console.log(this.keysService.KEYS.TOKEN);
-    const [rows, count] = await this.usersService.findAll();
-    return { rows, count };
+    return await this.usersService.findAll();
   }
 
   @Post()
