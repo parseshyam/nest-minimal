@@ -4,7 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './filters';
 import morgan from 'morgan';
-import { Queue } from "bullmq";
+import { Queue } from 'bullmq';
 import Arena from 'bull-arena';
 
 const bootstrap = async () => {
@@ -17,13 +17,13 @@ const bootstrap = async () => {
       {
         name: 'notification',
         hostId: 'Notification Queue',
-        type: "bullmq",
+        type: 'bullmq',
         redis: {
           host: 'localhost',
           port: 6379,
-        }
+        },
       },
-    ]
+    ],
   });
   app.use('/' + 'arena', arena);
   await app.listen(3000);

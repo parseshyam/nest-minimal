@@ -22,4 +22,4 @@ import { BullModule } from '@nestjs/bull';
     UsersService,
   ],
 })
-export class UsersModule { }
+export class UsersModule {}

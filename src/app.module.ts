@@ -4,9 +4,9 @@ import { AppService } from './app.service';
 import { AllModules } from './modules';
 import { KeysConfigModule } from './config/key.module';
 import { ScheduleModule } from '@nestjs/schedule';
-import { CronService } from "./services/cron/cron.service";
+import { CronService } from './services/cron/cron.service';
 import { BullModule } from '@nestjs/bull';
-import { NotificationProcessor } from "./services/queue/processors/notification.processor";
+import { NotificationProcessor } from './services/queue/processors/notification.processor';
 @Module({
   imports: [
     KeysConfigModule,
@@ -17,9 +17,9 @@ import { NotificationProcessor } from "./services/queue/processors/notification.
         port: 6379,
       },
     }),
-    ...AllModules
+    ...AllModules,
   ],
   controllers: [AppController],
   providers: [AppService, CronService, NotificationProcessor],
 })
-export class AppModule { }
+export class AppModule {}

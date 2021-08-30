@@ -12,7 +12,7 @@ export class UsersService {
     @InjectQueue('notification') private notificationQueue: Queue,
     @Inject('USER_REPOSITORY')
     private userRepository: Repository<User>,
-  ) { }
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
     try {
@@ -21,7 +21,6 @@ export class UsersService {
         firstName: 'parse',
         age: 23,
       });
-
     } catch (error) {
       throw error;
     }
@@ -30,9 +29,11 @@ export class UsersService {
 
   async findAll() {
     try {
-      await this.notificationQueue.add('notification-job', { data: { name: 'demo' } })
+      await this.notificationQueue.add('notification-job', {
+        data: { name: 'demo' },
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
     // const findAll = await this.userRepository.findAndCount({
     //   where: {},

@@ -3,6 +3,6 @@ import { NotificationProvider } from './notification.provider';
 
 @Module({
   exports: [NotificationProvider],
-  providers: [NotificationProvider]
+  providers: [NotificationProvider],
 })
-export class NotificationModule { }
+export class NotificationModule {}
