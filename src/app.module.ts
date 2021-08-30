@@ -7,6 +7,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { CronService } from './services/cron/cron.service';
 import { BullModule } from '@nestjs/bull';
 import { NotificationProcessor } from './services/queue/processors/notification.processor';
+import { NotificationService } from './services/queue/processors/notification.service';
 @Module({
   imports: [
     KeysConfigModule,
@@ -20,6 +21,11 @@ import { NotificationProcessor } from './services/queue/processors/notification.
     ...AllModules,
   ],
   controllers: [AppController],
-  providers: [AppService, CronService, NotificationProcessor],
+  providers: [
+    AppService,
+    CronService,
+    NotificationProcessor,
+    NotificationService,
+  ],
 })
 export class AppModule {}

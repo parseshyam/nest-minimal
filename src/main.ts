@@ -6,6 +6,7 @@ import { HttpExceptionFilter } from './filters';
 import morgan from 'morgan';
 import { Queue } from 'bullmq';
 import Arena from 'bull-arena';
+import { QUEUES } from './common/index';
 
 const bootstrap = async () => {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -13,17 +14,17 @@ const bootstrap = async () => {
   app.useGlobalFilters(new HttpExceptionFilter()); // * for global exception handling
   const arena = Arena({
     BullMQ: Queue,
-    queues: [
-      {
-        name: 'notification',
-        hostId: 'Notification Queue',
+    queues: Object.values(QUEUES).map((queue) => {
+      return {
+        name: queue,
+        hostId: queue.toUpperCase() + ' QUEUE',
         type: 'bullmq',
         redis: {
           host: 'localhost',
           port: 6379,
         },
-      },
-    ],
+      };
+    }),
   });
   app.use('/arena', arena);
   await app.listen(3000);
@@ -38,7 +39,7 @@ const graceShut = (app: NestExpressApplication) => {
   ['SIGINT', 'SIGTERM'].forEach((signal) => {
     process.on(signal, () => {
       console.log('SIGNAL CAPTURED : ', signal);
-      app.close().finally(() => process.exit(0))
+      app.close().finally(() => process.exit(0));
     });
   });
 };
