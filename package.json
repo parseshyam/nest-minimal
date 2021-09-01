@@ -7,6 +7,7 @@
     "license": "UNLICENSED",
     "scripts": {
         "prebuild": "rimraf build",
+        "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
         "build": "nest build",
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "start": "nest start",
@@ -21,7 +22,8 @@
         "test:cov": "jest --coverage",
         "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
         "test:e2e": "jest --config ./test/jest-e2e.json",
-        "create-module": "nest g resource ${module_name}"
+        "create-module": "nest g resource ${module_name}",
+        "prepare": "husky install"
     },
     "dependencies": {
         "@nestjs/bull": "^0.4.1",
@@ -39,6 +41,7 @@
         "firebase-admin": "^9.11.1",
         "i18n": "^0.13.3",
         "morgan": "^1.10.0",
+        "nestjs-console": "^7.0.0",
         "pg": "^8.7.1",
         "reflect-metadata": "^0.1.13",
         "rimraf": "^3.0.2",
@@ -64,6 +67,7 @@
         "eslint": "^7.30.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-prettier": "^3.4.0",
+        "husky": "^7.0.2",
         "jest": "27.0.6",
         "prettier": "^2.3.2",
         "run-script-webpack-plugin": "0.0.11",
