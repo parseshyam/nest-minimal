@@ -15,7 +15,7 @@ export class NotificationService {
   public sendMessage(
     token: string,
     message?: string,
-    payload?: {},
+    payload?: { demo: 'demo' },
   ): Promise<string> {
     return this.firebaseInstance.messaging().send({
       token,
@@ -29,7 +29,7 @@ export class NotificationService {
   public async multiCastMessage(
     tokens: string[],
     message?: string,
-    payload?: {},
+    payload?: { demo: 'demo' },
   ): Promise<firebase.messaging.BatchResponse> {
     return this.firebaseInstance.messaging().sendMulticast({
       tokens,

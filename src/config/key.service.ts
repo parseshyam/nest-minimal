@@ -49,9 +49,10 @@ export class KeysService {
     const ENV = process.env?.NODE_ENV?.toUpperCase() || 'DEVELOPMENT';
 
     const DB = <I_DB>{};
-    const TOKEN = <I_TOKEN>{};
     const AWS = <I_AWS>{};
     const FCM = <I_FCM>{};
+    const TOKEN = <I_TOKEN>{};
+    const REDIS = <I_REDIS>{};
 
     // * 1.DB CONFIG.
     DB.DB_PORT = process.env[`${ENV}_DB_PORT`];
@@ -76,6 +77,10 @@ export class KeysService {
     AWS.AWS_SECRET_KEY = process.env[`${ENV}_AWS_SECRET_KEY`];
     AWS.AWS_SES_REGION = process.env[`${ENV}_AWS_SES_REGION`];
 
+    // * 4.REDIS
+    REDIS.REDIS_HOST = process.env[`${ENV}_REDIS_HOST`];
+    REDIS.REDIS_PORT = +process.env[`${ENV}_REDIS_PORT`];
+
     // * 4.FCM
     FCM.type = process.env[`${ENV}_type`];
     FCM.auth_uri = process.env[`${ENV}_auth_uri`];
@@ -95,6 +100,7 @@ export class KeysService {
       ...AWS,
       ...FCM,
       ...TOKEN,
+      ...REDIS,
     };
 
     const missingEnvKeys: Array<string> = [];
@@ -116,6 +122,7 @@ export class KeysService {
     this.KEYS.TOKEN = TOKEN;
     this.KEYS.FCM = FCM;
     this.KEYS.AWS = AWS;
+    this.KEYS.REDIS = REDIS;
   };
 
   get(key: string): IConfigKeys {

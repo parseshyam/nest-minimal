@@ -3,6 +3,7 @@ type IConfigKeys = {
   TOKEN: I_TOKEN;
   AWS: I_AWS;
   FCM: I_FCM;
+  REDIS: I_REDIS;
 };
 
 interface I_FCM {
@@ -41,4 +42,9 @@ interface I_DB {
   DB_PASSWORD: string;
   DB_USER_NAME: string;
   DB_HOST_NAME: string;
+}
+
+interface I_REDIS {
+  REDIS_HOST: string;
+  REDIS_PORT: number;
 }

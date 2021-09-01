@@ -30,6 +30,7 @@
         "@nestjs/mapped-types": "*",
         "@nestjs/platform-express": "^8.0.0",
         "@nestjs/schedule": "^1.0.1",
+        "@nestjs/throttler": "^2.0.0",
         "@nestjs/typeorm": "^8.0.2",
         "bull": "^3.29.1",
         "bull-arena": "^3.29.2",
